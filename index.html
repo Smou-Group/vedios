@@ -2,93 +2,219 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>كشف العائلة</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMOU GROUP | حصاد الإنجاز - Milestone Achieved</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg1:#050b14;
+  --bg2:#0a1c33;
+  --glass: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.18);
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.75);
+  --hover: rgba(255,255,255,.14);
+}
+*{box-sizing:border-box}
 body{
-  font-family: Tahoma, Arial;
-  background:#f7f7f7;
+  margin:0;
+  font-family:"Tajawal",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(800px 400px at 20% 20%, rgba(0,150,255,.15), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  min-height:100vh;
+}
+.wrap{
+  max-width:1100px;
+  margin:auto;
   padding:20px;
 }
-h2{margin-bottom:10px}
-input{
-  padding:10px;
-  width:300px;
-  font-size:16px;
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:18px;
+  backdrop-filter:blur(14px);
 }
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-  background:#fff;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
-th,td{
-  border:1px solid #ccc;
-  padding:10px;
-  text-align:right;
+.brand img{
+  width:45px;
 }
-th{
-  background:#0f5c6e;
+.pageTitle{
+  text-align:center;
+  flex:1;
+}
+.pageTitle h1{
+  margin:0;
+  font-size:22px;
+  font-weight:800;
+}
+.pageTitle .sub{
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+.branch{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.card{
+  margin-top:20px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px;
+  backdrop-filter:blur(14px);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+
+.linkCard{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-decoration:none;
   color:#fff;
+  min-height:150px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;
+  padding:22px 16px;
+  transition:.3s;
+  backdrop-filter:blur(10px);
+  text-align:center;
 }
-tr:nth-child(even){background:#f2f2f2}
-.note{color:#666;margin-top:8px}
+.linkCard:hover{
+  transform:translateY(-6px);
+  background:var(--hover);
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+.linkCard .ar{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.linkCard .en{
+  font-size:15px;
+  font-weight:600;
+  color:var(--muted);
+  direction:ltr;
+}
+.linkCard .open{
+  margin-top:14px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  font-size:13px;
+  font-weight:700;
+}
+
+.footerNote{
+  margin-top:20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media (max-width:700px){
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+  }
+  .brand{
+    justify-content:center;
+  }
+  .branch{
+    display:none;
+  }
+}
 </style>
 </head>
 
 <body>
+<div class="wrap">
 
-<h2>🔎 البحث باسم العائلة</h2>
+  <div class="topbar">
+    <div class="brand">
+      <img src="logo.png" alt="SMOU GROUP Logo">
+      <div>
+        <div style="font-weight:800">SMOU GROUP</div>
+        <div style="font-size:12px;color:var(--muted)">Milestone Achieved</div>
+      </div>
+    </div>
 
-<input id="search" placeholder="اكتب اسم العائلة" />
-<div class="note" id="info">يرجى رفع ملف البيانات</div>
-<br><br>
-<input type="file" id="file" accept=".csv">
+    <div class="pageTitle">
+      <h1>حصاد الإنجاز - Milestone Achieved</h1>
+      <div class="sub">اختر القسم المطلوب لعرض الفيديوهات</div>
+    </div>
 
-<table id="table" style="display:none">
-  <thead></thead>
-  <tbody></tbody>
-</table>
+    <div class="branch">UAE</div>
+  </div>
 
-<script>
-let data=[], headers=[];
-const FAMILY_COL = "العائلة";
+  <div class="card">
+    <div class="grid">
 
-document.getElementById("file").addEventListener("change", async e=>{
-  const text = await e.target.files[0].text();
-  const lines = text.trim().split("\n");
-  headers = lines[0].split(",");
-  data = lines.slice(1).map(l=>{
-    let obj={};
-    l.split(",").forEach((v,i)=>obj[headers[i]]=v);
-    return obj;
-  });
-  document.getElementById("info").innerText="تم تحميل البيانات";
-});
+      <a class="linkCard" href="https://vedio-s.smougroup.com/" target="_blank">
+        <div class="ar">الفضي</div>
+        <div class="en">Silver</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
-document.getElementById("search").addEventListener("input",()=>{
-  const q = document.getElementById("search").value.trim();
-  const table = document.getElementById("table");
-  const thead = table.querySelector("thead");
-  const tbody = table.querySelector("tbody");
+      <a class="linkCard" href="https://vedio-g.smougroup.com/" target="_blank">
+        <div class="ar">الذهبي</div>
+        <div class="en">Golden</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
-  if(!q){ table.style.display="none"; return; }
+      <a class="linkCard" href="https://vedio-r.smougroup.com/" target="_blank">
+        <div class="ar">الروزجولد</div>
+        <div class="en">Rosegold</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
-  const norm = s => (s||"").toString().trim().replace(/\s+/g," ");
-const res = data.filter(r => norm(r[FAMILY_COL]).includes(norm(q)));
+      <a class="linkCard" href="https://vedio-b.smougroup.com/" target="_blank">
+        <div class="ar">الأسود</div>
+        <div class="en">Black</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
-  if(!res.length){
-    document.getElementById("info").innerText="لا توجد نتائج";
-    table.style.display="none";
-    return;
-  }
+      <a class="linkCard" href="https://vedio-w.smougroup.com/" target="_blank">
+        <div class="ar">الخشبي</div>
+        <div class="en">Wooden</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
-  thead.innerHTML="<tr>"+headers.map(h=>`<th>${h}</th>`).join("")+"</tr>";
-  tbody.innerHTML=res.map(r=>"<tr>"+headers.map(h=>`<td>${r[h]||""}</td>`).join("")+"</tr>").join("");
-  table.style.display="table";
-  document.getElementById("info").innerText=`عدد النتائج: ${res.length}`;
-});
-</script>
+      <a class="linkCard" href="https://vedio-p.smougroup.com/" target="_blank">
+        <div class="ar">البانورامي</div>
+        <div class="en">Panoramic</div>
+        <div class="open">فتح الصفحة</div>
+      </a>
 
+    </div>
+
+    <div class="footerNote">
+      SMOU GROUP © جميع الحقوق محفوظة
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
