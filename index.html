@@ -8,11 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
   --glass: rgba(255,255,255,.08);
+  --glass-strong: rgba(255,255,255,.12);
   --border: rgba(255,255,255,.18);
   --text:#ffffff;
+  --muted: rgba(255,255,255,.78);
 }
 
 *{box-sizing:border-box}
@@ -21,12 +22,10 @@ body{
   margin:0;
   font-family:"Tajawal",sans-serif;
   color:var(--text);
-
   background:
-  linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
-  url("black.jpg"),
-  url("black.png");
-
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.78)),
+    url("back.jpg"),
+    url("back.png");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
@@ -48,6 +47,7 @@ body{
   padding:14px;
   border-radius:18px;
   backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
 
 .brand{
@@ -56,7 +56,9 @@ body{
   gap:10px;
 }
 
-.brand img{width:45px}
+.brand img{
+  width:45px;
+}
 
 .pageTitle{
   text-align:center;
@@ -78,65 +80,103 @@ body{
   background:var(--glass);
   border:1px solid var(--border);
   border-radius:20px;
-  padding:25px;
+  padding:28px;
   backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(3, minmax(220px, 1fr));
+  gap:20px;
 }
 
 .btnLink{
+  position:relative;
   text-decoration:none;
   color:#fff;
-  padding:25px;
-  border-radius:18px;
-  font-size:20px;
-  font-weight:700;
+  padding:30px 20px;
+  border-radius:22px;
+  font-size:22px;
+  font-weight:800;
   text-align:center;
-  transition:.3s;
+  transition:.35s ease;
+  overflow:hidden;
+
+  background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 10px 30px rgba(0,0,0,.22);
 }
 
-.btnLink small{
-  display:block;
-  font-size:14px;
-  margin-top:5px;
-  opacity:.85;
+.btnLink::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:70%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transform:skewX(-20deg);
+  transition:.7s;
 }
 
-/* الوان الازرار */
-
-.silver{
-  background:linear-gradient(135deg,#cfd6dd,#9aa6b2);
-}
-
-.golden{
-  background:linear-gradient(135deg,#f5c542,#b8860b);
-}
-
-.rosegold{
-  background:linear-gradient(135deg,#d98c8c,#b76e79);
-}
-
-.black{
-  background:linear-gradient(135deg,#111,#333);
-}
-
-.wood{
-  background:linear-gradient(135deg,#8b5a2b,#5c3a1e);
-}
-
-.panoramic{
-  background:linear-gradient(135deg,#1fa2ff,#0f4c81);
+.btnLink:hover::before{
+  left:140%;
 }
 
 .btnLink:hover{
   transform:translateY(-6px);
-  box-shadow:0 20px 40px rgba(0,0,0,.5);
+  background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.09));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    0 18px 40px rgba(0,0,0,.35);
 }
 
+.btnLink small{
+  display:block;
+  font-size:15px;
+  margin-top:8px;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.silver{border-color:rgba(220,230,240,.28)}
+.golden{border-color:rgba(245,197,66,.30)}
+.rosegold{border-color:rgba(215,150,160,.30)}
+.black{border-color:rgba(180,180,180,.18)}
+.wood{border-color:rgba(160,110,60,.28)}
+.panoramic{border-color:rgba(31,162,255,.30)}
+
+@media (max-width:900px){
+  .grid{
+    grid-template-columns:repeat(2, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width:600px){
+  .topbar{
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+  }
+
+  .brand{
+    justify-content:center;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .btnLink{
+    font-size:20px;
+  }
+}
 </style>
 </head>
 
@@ -144,61 +184,61 @@ body{
 
 <div class="wrap">
 
-<div class="topbar">
+  <div class="topbar">
 
-<div class="brand">
-<img src="logo.png">
-<div>
-<div style="font-weight:800">SMOU GROUP</div>
-<div style="font-size:12px;opacity:.8">Milestone Achieved</div>
-</div>
-</div>
+    <div class="brand">
+      <img src="logo.png" alt="logo">
+      <div>
+        <div style="font-weight:800">SMOU GROUP</div>
+        <div style="font-size:12px;opacity:.8">Milestone Achieved</div>
+      </div>
+    </div>
 
-<div class="pageTitle">
-<h1>حصاد الإنجاز - Milestone Achieved</h1>
-</div>
+    <div class="pageTitle">
+      <h1>حصاد الإنجاز - Milestone Achieved</h1>
+    </div>
 
-<div class="branch">UAE</div>
+    <div class="branch">UAE</div>
 
-</div>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-<div class="grid">
+    <div class="grid">
 
-<a class="btnLink silver" href="https://vedio-s.smougroup.com/">
-الفضي
-<small>Silver</small>
-</a>
+      <a class="btnLink silver" href="https://vedio-s.smougroup.com/">
+        الفضي
+        <small>Silver</small>
+      </a>
 
-<a class="btnLink golden" href="https://vedio-g.smougroup.com/">
-الذهبي
-<small>Golden</small>
-</a>
+      <a class="btnLink golden" href="https://vedio-g.smougroup.com/">
+        الذهبي
+        <small>Golden</small>
+      </a>
 
-<a class="btnLink rosegold" href="https://vedio-r.smougroup.com/">
-الروزجولد
-<small>Rosegold</small>
-</a>
+      <a class="btnLink rosegold" href="https://vedio-r.smougroup.com/">
+        الروزجولد
+        <small>Rosegold</small>
+      </a>
 
-<a class="btnLink black" href="https://vedio-b.smougroup.com/">
-الأسود
-<small>Black</small>
-</a>
+      <a class="btnLink black" href="https://vedio-b.smougroup.com/">
+        الأسود
+        <small>Black</small>
+      </a>
 
-<a class="btnLink wood" href="https://vedio-w.smougroup.com/">
-الخشبي
-<small>Wooden</small>
-</a>
+      <a class="btnLink wood" href="https://vedio-w.smougroup.com/">
+        الخشبي
+        <small>Wooden</small>
+      </a>
 
-<a class="btnLink panoramic" href="https://vedio-p.smougroup.com/">
-البانورامي
-<small>Panoramic</small>
-</a>
+      <a class="btnLink panoramic" href="https://vedio-p.smougroup.com/">
+        البانورامي
+        <small>Panoramic</small>
+      </a>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </div>
 
